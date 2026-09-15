@@ -5,11 +5,11 @@
   const key = 'shen-site-appearance';
   // Accent pairs are [light, dark]; keep in sync with the data-accent rules in style.css.
   const accents = {
-    blue: ['#1c3d7c', '#9fb6e6'],
-    green: ['#1f4f3f', '#9dc3ad'],
-    gold: ['#7d5a17', '#d6b671'],
-    rose: ['#7b1e3c', '#dea3b4'],
-    ink: ['#111318', '#e6e8ee']
+    blue: ['#2456a5', '#82a8f4'],
+    green: ['#1e6b45', '#7cc79c'],
+    gold: ['#8a6414', '#d9b05a'],
+    rose: ['#9b2246', '#ea97ae'],
+    ink: ['#1a1d24', '#e8eaf0']
   };
   const defaults = { theme: 'system', accent: 'blue', font: 'default', size: 100 };
   const validate = (value = {}) => ({

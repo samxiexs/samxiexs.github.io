@@ -55,7 +55,7 @@
       this.t = 0;
       this.running = false;
       this.inView = true;
-      this.color = inkColor(0.22);
+      this.color = inkColor(0.16);
       this.resize();
       this.bind();
       if (reduced.matches) this.renderStatic(); else this.start();
@@ -68,7 +68,7 @@
       this.canvas.width = Math.round(rect.width * dpr);
       this.canvas.height = Math.round(rect.height * dpr);
       this.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      const count = Math.round(Math.min(360, Math.max(90, (rect.width * rect.height) / 3600)));
+      const count = Math.round(Math.min(300, Math.max(80, (rect.width * rect.height) / 4600)));
       this.particles = Array.from({ length: count }, () => this.spawn({}));
       this.ctx.clearRect(0, 0, this.w, this.h);
     }
@@ -89,7 +89,7 @@
       // Fade existing trails toward transparent, keeping the canvas see-through.
       if (fade) {
         ctx.globalCompositeOperation = 'destination-out';
-        ctx.fillStyle = 'rgba(0,0,0,0.032)';
+        ctx.fillStyle = 'rgba(0,0,0,0.04)';
         ctx.fillRect(0, 0, w, h);
         ctx.globalCompositeOperation = 'source-over';
       }
@@ -125,7 +125,7 @@
     renderStatic() {
       this.ctx.clearRect(0, 0, this.w, this.h);
       const prev = this.color;
-      this.color = inkColor(0.1);
+      this.color = inkColor(0.08);
       this.ctx.globalCompositeOperation = 'source-over';
       for (let i = 0; i < 70; i++) this.step(16.7, false);
       this.color = prev;
@@ -175,7 +175,7 @@
 
       // Old trails are the old ink colour on the new background, i.e. invisible; they fade out on their own.
       const recolor = () => {
-        this.color = inkColor(0.22);
+        this.color = inkColor(0.16);
         if (reduced.matches) this.renderStatic();
       };
       new MutationObserver(recolor).observe(root, { attributes: true, attributeFilter: ['data-theme'] });

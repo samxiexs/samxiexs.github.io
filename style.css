@@ -10,13 +10,13 @@
   color-scheme: light dark;
   /* light palette */
   --bg: #ffffff;
-  --ink: #111318;
-  --muted: #6b7280;
-  --line: #e5e7eb;
-  --soft: #f4f5f7;
-  --field-rgb: 17 19 24;
+  --ink: #1a1d24;
+  --muted: #697180;
+  --line: #e6e8ec;
+  --soft: #f6f7f9;
+  --field-rgb: 26 29 36;
   /* accent: light / dark pairs, picked by data-accent; --accent resolves per scheme */
-  --accent-l: #1c3d7c; --accent-d: #9fb6e6;   /* deep blue / soft steel blue */
+  --accent-l: #2456a5; --accent-d: #82a8f4;   /* deep blue, still clearly a link */
   --accent: var(--accent-l);
   --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   --mono: ui-monospace, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
@@ -26,22 +26,22 @@
   --ease: cubic-bezier(.2, .7, .2, 1);
   interpolate-size: allow-keywords;
 }
-:root[data-accent="green"] { --accent-l: #1f4f3f; --accent-d: #9dc3ad; }   /* pine / sage */
-:root[data-accent="gold"]  { --accent-l: #7d5a17; --accent-d: #d6b671; }   /* antique gold */
-:root[data-accent="rose"]  { --accent-l: #7b1e3c; --accent-d: #dea3b4; }   /* wine / dusty rose */
-:root[data-accent="ink"]   { --accent-l: #111318; --accent-d: #e6e8ee; }
+:root[data-accent="green"] { --accent-l: #1e6b45; --accent-d: #7cc79c; }   /* emerald */
+:root[data-accent="gold"]  { --accent-l: #8a6414; --accent-d: #d9b05a; }   /* antique gold */
+:root[data-accent="rose"]  { --accent-l: #9b2246; --accent-d: #ea97ae; }   /* raspberry */
+:root[data-accent="ink"]   { --accent-l: #1a1d24; --accent-d: #e8eaf0; }
 
 /* dark palette: dark grey-blue ground */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #161b26; --ink: #e6e8ee; --muted: #98a2b3; --line: #2a3140; --soft: #1e2431;
-    --field-rgb: 230 232 238; --accent: var(--accent-d);
+    --bg: #161b26; --ink: #e8eaf0; --muted: #a3adbe; --line: #2f3747; --soft: #202737;
+    --field-rgb: 232 234 240; --accent: var(--accent-d);
   }
 }
 :root[data-theme="dark"] {
   color-scheme: dark;
-  --bg: #161b26; --ink: #e6e8ee; --muted: #98a2b3; --line: #2a3140; --soft: #1e2431;
-  --field-rgb: 230 232 238; --accent: var(--accent-d);
+  --bg: #161b26; --ink: #e8eaf0; --muted: #a3adbe; --line: #2f3747; --soft: #202737;
+  --field-rgb: 232 234 240; --accent: var(--accent-d);
 }
 :root[data-theme="light"] { color-scheme: light; }
 :root[data-font="mono"] { --sans: var(--mono); }
@@ -61,6 +61,11 @@ body {
 ::selection { background: color-mix(in srgb, var(--accent) 22%, transparent); }
 a { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+.content p a, .content li a, .content h3 a {
+  text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px;
+  text-decoration-color: color-mix(in srgb, var(--accent) 40%, transparent);
+}
+.content p a:hover, .content li a:hover, .content h3 a:hover { text-decoration-color: currentColor; }
 a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visible, select:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
 button { font: inherit; color: inherit; }
 img { display: block; max-width: 100%; }
@@ -157,8 +162,8 @@ small, .meta { font-size: .875rem; color: var(--muted); }
   width: calc(100% + 20vw + 40px);
   height: 100%;
   pointer-events: none;
-  -webkit-mask-image: linear-gradient(to bottom, #000 72%, transparent), linear-gradient(to right, transparent, rgb(0 0 0 / .4) 60px, rgb(0 0 0 / .4) 42%, #000 68%);
-  mask-image: linear-gradient(to bottom, #000 72%, transparent), linear-gradient(to right, transparent, rgb(0 0 0 / .4) 60px, rgb(0 0 0 / .4) 42%, #000 68%);
+  -webkit-mask-image: linear-gradient(to bottom, #000 72%, transparent), linear-gradient(to right, transparent, rgb(0 0 0 / .25) 60px, rgb(0 0 0 / .25) 45%, #000 72%);
+  mask-image: linear-gradient(to bottom, #000 72%, transparent), linear-gradient(to right, transparent, rgb(0 0 0 / .25) 60px, rgb(0 0 0 / .25) 45%, #000 72%);
   -webkit-mask-composite: source-in;
   mask-composite: intersect;
 }
