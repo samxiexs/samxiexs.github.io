@@ -1,5 +1,66 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Photography · Shen Xie</title><meta name="description" content="Photography by Shen Xie."><link rel="canonical" href="https://samxiexs.github.io/photography.html"><link rel="icon" href="assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="style.css"><script src="collections.js" defer></script><script src="gallery.js" defer></script><script src="/appearance.js"></script></head>
-<body><a class="skip" href="#main">Skip to content</a><header class="site-header"><div class="container header-inner"><a class="brand" href="./">Shen Xie<span>.</span></a><nav class="nav" aria-label="Main navigation"><a href="./">About</a><a href="index.html#research">Research</a><a href="photography.html" aria-current="page">Photography</a><a href="music.html">Music</a><a href="cv-refernce/ShenXie-CV-20260914.pdf">CV ↗</a></nav></div></header>
-<main id="main" class="container single-page"><div class="page-intro"><h1>Photography</h1></div><section id="photo-empty" class="quiet-state" aria-labelledby="photo-soon"><h2 id="photo-soon">No photos yet.</h2></section><div id="photos" class="collection" aria-label="Photo collection"></div><noscript><p>Enable JavaScript to view photo collections when available.</p></noscript></main>
-<footer class="site-footer"><div class="container footer-inner"><span>© 2026 Shen Xie</span><a href="./">Home ↗</a></div></footer></body></html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Photography · Shen Xie</title>
+  <meta name="description" content="Photography by Shen Xie.">
+  <link rel="canonical" href="https://samxiexs.github.io/photography.html">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#161b26" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="style.css">
+  <script src="appearance.js"></script>
+  <script src="collections.js" defer></script>
+  <script src="gallery.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="layout">
+  <aside class="sidebar" id="top">
+    <div class="sidebar-top">
+      <p class="brand"><a href="./">Shen Xie</a></p>
+      <p class="role">MS student, Computational Science &amp; Engineering, Georgia Tech</p>
+    </div>
+    <nav class="nav" aria-label="Main navigation">
+      <a href="./">About</a>
+      <a href="index.html#news">News</a>
+      <a href="index.html#research">Research</a>
+      <a href="index.html#projects">Projects</a>
+      <a href="index.html#experience">Experience</a>
+      <span class="nav-gap" aria-hidden="true"></span>
+      <a href="photography.html" aria-current="page">Photography</a>
+      <a href="music.html">Music</a>
+      <a href="cv-refernce/ShenXie-CV-20260914.pdf">CV <span class="arrow" aria-hidden="true">↗</span></a>
+    </nav>
+    <div class="sidebar-foot">
+      <p class="social"><a href="mailto:sxie322@gatech.edu">Email</a><a href="https://github.com/samxiexs">GitHub</a><a href="https://www.linkedin.com/in/shenxie">LinkedIn</a></p>
+      <p class="clock" data-clock hidden>Atlanta · <time></time></p>
+    </div>
+  </aside>
+
+  <main id="main" class="content single-page">
+    <div class="page-intro">
+      <canvas class="field" data-field aria-hidden="true"></canvas>
+      <h1>Photography</h1>
+      <p>Places and light, away from the desk.</p>
+    </div>
+    <section id="photo-empty" class="quiet-state" aria-labelledby="photo-soon">
+      <h2 id="photo-soon">No photos yet.</h2>
+      <p>Photos will appear here.</p>
+    </section>
+    <div id="photos" class="collection" aria-label="Photo collection"></div>
+    <noscript><p>Enable JavaScript to view photo collections when available.</p></noscript>
+    <footer class="site-footer">
+      <div class="footer-inner"><span>© 2026 Shen Xie · Atlanta, GA</span><span><a href="./">Home</a> · <a href="#top">Top ↑</a></span></div>
+    </footer>
+  </main>
+</div>
+<script src="field.js" defer></script>
+<script src="site.js" defer></script>
+</body>
+</html>
