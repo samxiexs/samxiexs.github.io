@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Misc · Shen Xie</title>
+  <meta name="description" content="Photography, music, and notes by Shen Xie.">
+  <link rel="canonical" href="https://samxiexs.github.io/misc.html">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#161b26" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="style.css">
+  <script src="appearance.js"></script>
+  <script src="collections.js" defer></script>
+  <script src="gallery.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="layout">
+  <aside class="sidebar" id="top">
+    <div class="sidebar-top">
+      <p class="brand"><a href="./">Shen Xie</a></p>
+      <p class="role">MS student, Computational Science &amp; Engineering, Georgia Tech</p>
+    </div>
+    <nav class="nav" aria-label="Main navigation">
+      <a href="./">About</a>
+      <a href="index.html#news">News</a>
+      <a href="index.html#research">Research</a>
+      <a href="index.html#projects">Projects</a>
+      <a href="index.html#experience">Experience</a>
+      <span class="nav-gap" aria-hidden="true"></span>
+      <a href="misc.html" aria-current="page">Misc</a>
+      <div class="subnav" data-spy>
+        <a href="#photography">Photography</a>
+        <a href="#music">Music</a>
+        <a href="#notes">Notes</a>
+      </div>
+      <a href="cv-refernce/ShenXie-CV-20260914.pdf">CV <span class="arrow" aria-hidden="true">↗</span></a>
+    </nav>
+    <div class="sidebar-foot">
+      <p class="social"><a href="mailto:sxie322@gatech.edu">Email</a><a href="https://github.com/samxiexs">GitHub</a><a href="https://www.linkedin.com/in/shenxie">LinkedIn</a></p>
+      <p class="clock" data-clock hidden>Atlanta · <time></time></p>
+    </div>
+  </aside>
+
+  <main id="main" class="content single-page">
+    <div class="page-intro">
+      <canvas class="field" data-field aria-hidden="true"></canvas>
+      <h1>Misc</h1>
+      <p>Photos, music, and whatever else doesn’t fit in a CV :)</p>
+    </div>
+
+    <section class="section" id="photography" aria-labelledby="photo-title">
+      <div class="section-head"><h2 id="photo-title">Photography</h2></div>
+      <p class="section-note">Places and light, away from the desk. The camera is mostly an excuse to go for a walk :)</p>
+      <p id="photo-empty" class="quiet-state">No photos yet — the good ones are still being picked :)</p>
+      <div id="photos" class="collection" aria-label="Photo collection"></div>
+    </section>
+
+    <section class="section" id="music" aria-labelledby="music-title">
+      <div class="section-head"><h2 id="music-title">Music</h2></div>
+      <p class="section-note">What I’m listening to, and the occasional recording of my own. Headphones recommended, judgment optional :)</p>
+      <p id="music-empty" class="quiet-state">No music added yet. For now, imagine something good :)</p>
+      <div id="tracks" aria-label="Music collection"></div>
+    </section>
+
+    <section class="section" id="notes" aria-labelledby="notes-title">
+      <div class="section-head"><h2 id="notes-title">Notes</h2></div>
+      <p class="section-note">Short, unpolished, occasionally useful :)</p>
+      <p id="notes-empty" class="quiet-state">Nothing written yet. Give me a rainy weekend :)</p>
+      <!-- Notes come from the `notes` array in collections.js; longer ones live as pages in notes/ (copy notes/_template.html). -->
+      <div id="notes-list" class="notes" aria-label="Notes"></div>
+    </section>
+    <noscript><p>Enable JavaScript to view the collections when available.</p></noscript>
+    <footer class="site-footer">
+      <div class="footer-inner"><span>© 2026 Shen Xie · Atlanta, GA</span><span><a href="./">Home</a> · <a href="#top">Top ↑</a></span></div>
+    </footer>
+  </main>
+</div>
+<script src="field.js" defer></script>
+<script src="site.js" defer></script>
+</body>
+</html>

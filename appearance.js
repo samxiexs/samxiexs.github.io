@@ -1,15 +1,14 @@
 /* appearance.js — visitor appearance controls (theme / accent / font / text size).
    Loaded synchronously in <head> so the saved settings apply before first paint.
-   Theme changes use the View Transitions API (where available) for a circular reveal
-   that expands from the control; browsers without it simply switch. */
+   Theme changes cross-fade colours via a short-lived .theme-fade class on <html>. */
 (() => {
   const key = 'shen-site-appearance';
   // Accent pairs are [light, dark]; keep in sync with the data-accent rules in style.css.
   const accents = {
-    blue: ['#1d4ed8', '#8ab4ff'],
-    green: ['#15803d', '#7dd3a0'],
-    gold: ['#9a6b00', '#e6c25a'],
-    rose: ['#be123c', '#ff90a8'],
+    blue: ['#1c3d7c', '#9fb6e6'],
+    green: ['#1f4f3f', '#9dc3ad'],
+    gold: ['#7d5a17', '#d6b671'],
+    rose: ['#7b1e3c', '#dea3b4'],
     ink: ['#111318', '#e6e8ee']
   };
   const defaults = { theme: 'system', accent: 'blue', font: 'default', size: 100 };
@@ -36,17 +35,19 @@
     meta.name = 'theme-color'; meta.content = isDark() ? '#161b26' : '#ffffff';
     document.head.append(meta);
   }
-  // Circular reveal from (x, y) when the rendered scheme actually changes.
-  function applyFrom(x, y) {
+  // Cross-fade colours when the rendered scheme actually changes (see .theme-fade in style.css).
+  let fadeTimer = 0;
+  function applyAnimated() {
     const current = root.dataset.theme;
     const before = current === 'dark' || (current !== 'light' && system.matches);
-    if (!document.startViewTransition || reduced.matches || before === isDark()) { apply(); return; }
-    root.style.setProperty('--vt-x', `${x}px`);
-    root.style.setProperty('--vt-y', `${y}px`);
-    document.startViewTransition(() => apply());
+    if (reduced.matches || before === isDark()) { apply(); return; }
+    root.classList.add('theme-fade');
+    apply();
+    clearTimeout(fadeTimer);
+    fadeTimer = setTimeout(() => root.classList.remove('theme-fade'), 450);
   }
   apply();
-  system.addEventListener('change', apply);
+  system.addEventListener('change', applyAnimated);
 
   document.addEventListener('DOMContentLoaded', () => {
     const panel = document.createElement('details');
@@ -64,13 +65,12 @@
     const font = panel.querySelector('#site-font');
     const size = panel.querySelector('#site-size');
     const radios = [...panel.querySelectorAll('input[name="site-accent"]')];
-    const center = (el) => { const r = el.getBoundingClientRect(); return [r.left + r.width / 2, r.top + r.height / 2]; };
     function sync() {
       theme.value = settings.theme; font.value = settings.font; size.value = settings.size;
       radios.forEach((r) => { r.checked = r.value === settings.accent; });
     }
-    function save(origin) {
-      if (origin) applyFrom(...origin); else apply();
+    function save(animate) {
+      if (animate) applyAnimated(); else apply();
       try { localStorage.setItem(key, JSON.stringify(settings)); } catch {}
     }
     sync();
@@ -79,10 +79,10 @@
       const wanted = validate({ theme: theme.value, accent, font: font.value, size: Number(size.value) });
       const themeChanged = wanted.theme !== settings.theme;
       settings = wanted;
-      save(themeChanged ? center(event.target) : null);
+      save(themeChanged);
     });
-    panel.querySelector('button').addEventListener('click', (event) => {
-      settings = { ...defaults }; sync(); save(center(event.currentTarget));
+    panel.querySelector('button').addEventListener('click', () => {
+      settings = { ...defaults }; sync(); save(true);
     });
     panel.addEventListener('keydown', (event) => {
       if (event.key === 'Escape') { panel.open = false; panel.querySelector('summary').focus(); }

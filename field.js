@@ -173,9 +173,9 @@
 
       document.addEventListener('visibilitychange', () => { if (document.hidden) this.stop(); else this.start(); });
 
+      // Old trails are the old ink colour on the new background, i.e. invisible; they fade out on their own.
       const recolor = () => {
         this.color = inkColor(0.22);
-        this.ctx.clearRect(0, 0, this.w, this.h);
         if (reduced.matches) this.renderStatic();
       };
       new MutationObserver(recolor).observe(root, { attributes: true, attributeFilter: ['data-theme'] });

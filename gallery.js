@@ -1,4 +1,4 @@
-/* gallery.js — renders the photo and music collections from collections.js,
+/* gallery.js — renders the photo, music, and notes collections from collections.js,
    and opens photos in a keyboard-navigable lightbox (native <dialog>). */
 (() => {
   const collections = window.personalCollections || {};
@@ -86,5 +86,24 @@
       tracks.append(article);
     }
     document.getElementById('music-empty').hidden = tracks.childElementCount > 0;
+  }
+
+  const notes = document.getElementById('notes-list');
+  if (notes) {
+    for (const note of collections.notes || []) {
+      if (!note.title) continue;
+      const href = safeUrl(note.href);
+      const article = document.createElement('article'); article.className = 'note';
+      const time = document.createElement('time');
+      if (note.date) { time.dateTime = note.date; time.textContent = note.date; }
+      const title = document.createElement('h3');
+      if (href) { const link = text('a', note.title); link.href = href; title.append(link); } else title.textContent = note.title;
+      const body = document.createElement('div');
+      body.append(title);
+      if (note.summary) body.append(text('p', note.summary));
+      article.append(time, body);
+      notes.append(article);
+    }
+    document.getElementById('notes-empty').hidden = notes.childElementCount > 0;
   }
 })();
