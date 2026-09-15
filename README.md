@@ -9,7 +9,8 @@ An English academic homepage with separate spaces for photography and music. Pla
 ## 更新内容
 
 - `index.html`：个人介绍、研究项目、经历、教育、动态。研究内容直接存在 HTML 中，禁用 JavaScript 也能阅读。
-- `style.css`：全站颜色、字体、桌面及手机布局。使用 `prefers-color-scheme` 自动跟随系统浅色/深色设置，切换系统主题立即生效，无需刷新或手动开关。
+- `style.css`：全站颜色、字体、桌面及手机布局。
+- `appearance.js`：页面右上角的 Appearance 设置。可选择 System / Light / Dark、Default / Mono，以及 90% 至 110% 的字体大小；选择会保存于访问者的浏览器，并在全部页面沿用。
 - `pic/self.jpg`：个人照片；当前使用原图，由 CSS 控制展示区域。
 - `cv-refernce/ShenXie-CV-20260914.pdf`：网站链接的当前 CV。替换版本后同步修改各页面中的链接。
 - `collections.js`：照片和音乐条目；两个数组留空时显示待更新说明。
