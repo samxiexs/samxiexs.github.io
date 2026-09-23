@@ -74,72 +74,106 @@
     <section class="section" id="research" aria-labelledby="research-title">
       <div class="section-head"><h2 id="research-title">Ongoing research</h2><a href="cv-refernce/ShenXie-CV-20260914.pdf">Full CV ↗</a></div>
       <p class="section-note">Everything here is still in progress — that is the fun part, nobody knows the ending yet :)</p>
-      <!-- "Code in Github. Public soon" placeholders: replace with <a href="…">Code ↗</a> when a repository goes public. -->
-      <ol class="research-list">
-        <li class="research-item">
-          <div class="category">AI for science</div>
-          <article>
-            <h3>Speech Analysis for Psychosis and Suicide-Risk Assessment</h3>
-            <p>Listening for signs of <strong>psychosis</strong> and <strong>suicide risk</strong> in how people speak, not only in what they say.</p>
-            <span class="status">In progress · since Sep 2026</span>
-            <details class="paper-details"><summary>details</summary><p>Speech-based modeling for psychiatric assessment, built on two kinds of recordings: <strong>clinical interviews</strong> with people experiencing psychosis, and <strong>calls to a crisis line</strong> for people at high risk of suicide. The work asks which <strong>acoustic and linguistic patterns</strong> carry clinically meaningful signal, how to model them so they hold up across speakers and recording conditions, and how such models could support, rather than replace, clinicians and crisis responders.</p><p>The data is as sensitive as data gets, so privacy and careful evaluation come before anything else.</p></details>
-          </article>
-        </li>
-        <li class="research-item">
-          <div class="category">AI for science</div>
-          <article>
-            <h3>General-Purpose LLM Agents for Efficient Scientific Experiment Selection</h3>
-            <p>Co-first author with Yuming Zeng</p>
-            <p>Teaching <strong>LLM agents</strong> to pick the next experiment wisely: fewer experiments, more science.</p>
-            <span class="status">In progress · since Sep 2026</span>
-            <details class="paper-details"><summary>details</summary><p>A general framework for <strong>sequential scientific experiment selection</strong>: an agent adaptively chooses the most informative next experiment from a large candidate space, aiming to reach a scientific objective with as few experiments as possible.</p></details>
-            <div class="text-links"><span class="soon">Code in Github. Public soon</span></div>
-          </article>
-        </li>
-        <li class="research-item">
-          <div class="category">Multimodal learning</div>
-          <article>
-            <h3>Diffusion-Based Image–Audio Alignment</h3>
-            <p>Third author · with Biyang Xin, <a href="https://nestor-sun.github.io/">Mingwei Sun</a>, Shijie Zhang, and <a href="https://sites.google.com/view/xitong-li/">Xitong Li</a></p>
-            <p><strong>Diffusion models</strong> that learn what a picture sounds like, and what a sound looks like.</p>
-            <span class="status">In progress · since Aug 2026</span>
-            <details class="paper-details"><summary>details</summary><p>A diffusion-based multimodal framework for learning <strong>aligned image–audio representations</strong>, enabling cross-modal correspondence and generation across visual and acoustic modalities. Trained on paired image–audio clips collected from <strong>YouTube</strong>.</p></details>
-            <div class="text-links"><span class="soon">Code in Github. Public soon</span></div>
-          </article>
-        </li>
-        <li class="research-item">
-          <div class="category">Multimodal learning</div>
-          <article>
-            <h3>EEG-to-Speech Decoding via Coordinate-Aware Cross-Modal Representation Learning</h3>
-            <p>First author · with <a href="https://nestor-sun.github.io/">Mingwei Sun</a>, Shijie Zhang, and <a href="https://sites.google.com/view/xitong-li/">Xitong Li</a></p>
-            <p>Decoding <strong>speech content from EEG</strong>, evaluated across subjects and content so the model cannot cheat.</p>
-            <span class="status">In progress · since Apr 2026</span>
-            <details class="paper-details"><summary>details</summary><p>A unified EEG-to-speech-content framework that maps variable-channel EEG signals to shared <strong>MFCC and HuBERT</strong> speech representations using coordinate-aware <strong>CNN–Conformer</strong> encoders.</p><p><strong>Leakage-controlled</strong> multi-dataset pipelines with subject and content OOD splits, masked channel–time modeling, contrastive EEG–audio alignment, and counterfactual EEG controls.</p></details>
-            <div class="text-links"><span class="soon">Code in Github. Public soon</span></div>
-          </article>
-        </li>
-        <li class="research-item">
-          <div class="category">Human-AI interaction</div>
-          <article>
-            <h3>Human-AI interaction in product advertising</h3>
-            <p>Second author</p>
-            <p>Title and details withheld while the reviewers do their thing :)</p>
-            <span class="status">Under review at CHI 2027</span>
-            <div class="text-links"><span class="soon">Code in Github. Public soon</span></div>
-          </article>
-        </li>
-        <li class="research-item">
-          <div class="category">Digital platforms</div>
-          <article>
-            <h3>The Power of Content Similarity in Recent Reviews on Hotel Revenue</h3>
-            <p>Second author · with Baojun Gao and Jiawen Wang</p>
-            <p>When recent reviews all sound the same, hotels earn less. Evidence from <strong>1.5 million TripAdvisor reviews</strong> across 2,990 hotels in Texas.</p>
-            <span class="status">Manuscript in preparation</span>
-            <details class="paper-details"><summary>details</summary><p>Higher similarity between adjacent recent reviews significantly reduces hotel revenue, with the strongest effects for high-end, high-volume, and lower-rated hotels.</p></details>
-            <div class="text-links"><a href="https://github.com/samxiexs/NLP-similarity-research-for-reviews-in-TripAdvisor.com">Code ↗</a></div>
-          </article>
-        </li>
-      </ol>
+      <!-- Research is grouped by agenda; papers are numbered automatically and show only their title until opened.
+           "Code in Github. Public soon" placeholders: replace with <a href="…">Code ↗</a> when a repository goes public. -->
+      <section class="agenda" aria-labelledby="agenda-01">
+        <p class="agenda-no">Agenda 01</p>
+        <div class="agenda-body">
+          <h3 id="agenda-01">AI for science</h3>
+          <p class="agenda-note">Using AI to move research along: choosing which experiment to run next, and reading clinical signal out of speech.</p>
+          <ol class="research-list">
+            <li class="research-item">
+              <details class="paper">
+                <summary><h4>Speech Analysis for Psychosis and Suicide-Risk Assessment</h4></summary>
+                <div class="paper-body">
+                  <p class="status">In progress · since Sep 2026</p>
+                  <p>Listening for signs of <strong>psychosis</strong> and <strong>suicide risk</strong> in how people speak, not only in what they say.</p>
+                  <p>Speech-based modeling for psychiatric assessment, built on two kinds of recordings: <strong>clinical interviews</strong> with people experiencing psychosis, and <strong>calls to a crisis line</strong> for people at high risk of suicide. The work asks which <strong>acoustic and linguistic patterns</strong> carry clinically meaningful signal, how to model them so they hold up across speakers and recording conditions, and how such models could support, rather than replace, clinicians and crisis responders.</p>
+                  <p>The data is as sensitive as data gets, so privacy and careful evaluation come before anything else.</p>
+                </div>
+              </details>
+            </li>
+            <li class="research-item">
+              <details class="paper">
+                <summary><h4>General-Purpose LLM Agents for Efficient Scientific Experiment Selection</h4></summary>
+                <div class="paper-body">
+                  <p class="paper-authors">Co-first author with Yuming Zeng</p>
+                  <p class="status">In progress · since Sep 2026</p>
+                  <p>Teaching <strong>LLM agents</strong> to pick the next experiment wisely: fewer experiments, more science.</p>
+                  <p>A general framework for <strong>sequential scientific experiment selection</strong>: an agent adaptively chooses the most informative next experiment from a large candidate space, aiming to reach a scientific objective with as few experiments as possible.</p>
+                  <div class="text-links"><span class="soon">Code in Github. Public soon</span></div>
+                </div>
+              </details>
+            </li>
+          </ol>
+        </div>
+      </section>
+      <section class="agenda" aria-labelledby="agenda-02">
+        <p class="agenda-no">Agenda 02</p>
+        <div class="agenda-body">
+          <h3 id="agenda-02">Multimodal learning</h3>
+          <p class="agenda-note">Learning shared representations across images, audio, and brain signals — so one modality can stand in for another.</p>
+          <ol class="research-list">
+            <li class="research-item">
+              <details class="paper">
+                <summary><h4>Diffusion-Based Image–Audio Alignment</h4></summary>
+                <div class="paper-body">
+                  <p class="paper-authors">Third author · with Biyang Xin, <a href="https://nestor-sun.github.io/">Mingwei Sun</a>, Shijie Zhang, and <a href="https://sites.google.com/view/xitong-li/">Xitong Li</a></p>
+                  <p class="status">In progress · since Aug 2026</p>
+                  <p><strong>Diffusion models</strong> that learn what a picture sounds like, and what a sound looks like.</p>
+                  <p>A diffusion-based multimodal framework for learning <strong>aligned image–audio representations</strong>, enabling cross-modal correspondence and generation across visual and acoustic modalities. Trained on paired image–audio clips collected from <strong>YouTube</strong>.</p>
+                  <div class="text-links"><span class="soon">Code in Github. Public soon</span></div>
+                </div>
+              </details>
+            </li>
+            <li class="research-item">
+              <details class="paper">
+                <summary><h4>EEG-to-Speech Decoding via Coordinate-Aware Cross-Modal Representation Learning</h4></summary>
+                <div class="paper-body">
+                  <p class="paper-authors">First author · with <a href="https://nestor-sun.github.io/">Mingwei Sun</a>, Shijie Zhang, and <a href="https://sites.google.com/view/xitong-li/">Xitong Li</a></p>
+                  <p class="status">In progress · since Apr 2026</p>
+                  <p>Decoding <strong>speech content from EEG</strong>, evaluated across subjects and content so the model cannot cheat.</p>
+                  <p>A unified EEG-to-speech-content framework that maps variable-channel EEG signals to shared <strong>MFCC and HuBERT</strong> speech representations using coordinate-aware <strong>CNN–Conformer</strong> encoders.</p>
+                  <p><strong>Leakage-controlled</strong> multi-dataset pipelines with subject and content OOD splits, masked channel–time modeling, contrastive EEG–audio alignment, and counterfactual EEG controls.</p>
+                  <div class="text-links"><span class="soon">Code in Github. Public soon</span></div>
+                </div>
+              </details>
+            </li>
+          </ol>
+        </div>
+      </section>
+      <section class="agenda" aria-labelledby="agenda-03">
+        <p class="agenda-no">Agenda 03</p>
+        <div class="agenda-body">
+          <h3 id="agenda-03">Human–AI interaction &amp; digital platforms</h3>
+          <p class="agenda-note">How people and algorithms shape each other on platforms, and what that does to the content and the numbers.</p>
+          <ol class="research-list">
+            <li class="research-item">
+              <details class="paper">
+                <summary><h4>Human-AI interaction in product advertising</h4></summary>
+                <div class="paper-body">
+                  <p class="paper-authors">Second author</p>
+                  <p class="status">Under review at CHI 2027</p>
+                  <p>Title and details withheld while the reviewers do their thing :)</p>
+                  <div class="text-links"><span class="soon">Code in Github. Public soon</span></div>
+                </div>
+              </details>
+            </li>
+            <li class="research-item">
+              <details class="paper">
+                <summary><h4>The Power of Content Similarity in Recent Reviews on Hotel Revenue</h4></summary>
+                <div class="paper-body">
+                  <p class="paper-authors">Second author · with Baojun Gao and Jiawen Wang</p>
+                  <p class="status">Manuscript in preparation</p>
+                  <p>When recent reviews all sound the same, hotels earn less. Evidence from <strong>1.5 million TripAdvisor reviews</strong> across 2,990 hotels in Texas.</p>
+                  <p>Higher similarity between adjacent recent reviews significantly reduces hotel revenue, with the strongest effects for high-end, high-volume, and lower-rated hotels.</p>
+                  <div class="text-links"><a href="https://github.com/samxiexs/NLP-similarity-research-for-reviews-in-TripAdvisor.com">Code ↗</a></div>
+                </div>
+              </details>
+            </li>
+          </ol>
+        </div>
+      </section>
     </section>
 
     <section class="section" id="projects" aria-labelledby="projects-title">
