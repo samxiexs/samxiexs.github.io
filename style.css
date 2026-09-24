@@ -278,6 +278,9 @@ strong { font-weight: 600; }
 .entry .logo { width: 40px; height: 40px; object-fit: contain; padding: 3px; background: #fff; border: 1px solid var(--line); border-radius: 9px; }
 .entry h3 { font-size: .95rem; margin-bottom: 2px; }
 .entry p { font-size: .875rem; margin: 2px 0 0; color: var(--muted); }
+.entry .ta-label { margin-top: 8px; color: var(--ink); }
+.entry .ta { margin: 2px 0 0; padding-left: 16px; font-size: .875rem; color: var(--muted); }
+.entry .ta li { margin-top: 2px; }
 .entry .date { display: block; font-family: var(--mono); font-size: .72rem; color: var(--muted); margin-bottom: 4px; }
 
 /* footer */
