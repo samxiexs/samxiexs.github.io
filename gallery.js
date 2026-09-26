@@ -14,20 +14,94 @@
   const photos = document.getElementById('photos');
   if (photos) {
     const shown = [];
-    for (const photo of collections.photos || []) {
-      const src = safeUrl(photo.src);
-      if (!src || !photo.alt) continue;
+    const addPhoto = (grid, photo, base) => {
+      const src = safeUrl(base + photo.src);
+      if (!src || !photo.alt) return;
+      const full = safeUrl(base + (photo.full || photo.src)) || src;
       const figure = document.createElement('figure');
       const link = document.createElement('a');
-      link.href = src;
+      link.href = full;
       link.setAttribute('aria-label', `View full photo: ${photo.alt}`);
       const image = document.createElement('img');
-      image.src = src; image.alt = photo.alt; image.loading = 'lazy';
+      image.src = src; image.alt = photo.alt; image.loading = 'lazy'; image.decoding = 'async';
+      if (photo.w && photo.h) { image.width = photo.w; image.height = photo.h; }
       link.append(image); figure.append(link);
       if (photo.caption) figure.append(text('figcaption', photo.caption));
-      photos.append(figure);
-      const index = shown.push({ src, alt: photo.alt, caption: photo.caption || '' }) - 1;
+      grid.append(figure);
+      const index = shown.push({ src: full, alt: photo.alt, caption: photo.caption || '' }) - 1;
       link.addEventListener('click', (event) => { if (openLightbox(index)) event.preventDefault(); });
+    };
+    // Albums are collapsible. Closed: title + a floating stack of a few photos that fans out on
+    // hover and drifts with the cursor. Clicking the title (or the stack) opens the full grid;
+    // the title or the "Close album" button at the bottom closes it again.
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    for (const album of collections.albums || []) {
+      const base = album.dir || '';
+      const grid = document.createElement('div');
+      grid.className = 'album-grid';
+      for (const photo of album.photos || []) addPhoto(grid, photo, base);
+      if (!grid.childElementCount) continue;
+
+      const details = document.createElement('details');
+      details.className = 'album';
+      if (album.id) details.id = album.id;
+      const summary = document.createElement('summary');
+      summary.append(text('h3', album.title));
+      const meta = [album.dates, `${grid.childElementCount} photos`].filter(Boolean).join(' · ');
+      const dates = text('span', meta); dates.className = 'album-dates'; summary.append(dates);
+      if (album.note) { const n = text('span', album.note); n.className = 'album-note'; summary.append(n); }
+
+      // Floating preview: up to five cards, centred card on top.
+      const preview = document.createElement('span');
+      preview.className = 'album-preview';
+      preview.setAttribute('aria-hidden', 'true');
+      const picks = (album.preview || [0, 1, 2, 3, 4]).map((i) => album.photos[i]).filter(Boolean).slice(0, 5);
+      const mid = (picks.length - 1) / 2;
+      picks.forEach((photo, k) => {
+        const src = safeUrl(base + photo.src);
+        if (!src) return;
+        const card = document.createElement('span');
+        card.className = 'album-card';
+        const i = k - mid;
+        card.style.setProperty('--i', i);
+        card.style.setProperty('--d', `${10 + Math.abs(i) * 8}px`);
+        card.style.zIndex = String(10 - Math.round(Math.abs(i) * 2));
+        const img = document.createElement('img');
+        img.src = src; img.alt = ''; img.loading = 'lazy'; img.decoding = 'async';
+        card.append(img);
+        preview.append(card);
+      });
+      if (!reduced) {
+        preview.addEventListener('pointermove', (e) => {
+          const r = preview.getBoundingClientRect();
+          preview.style.setProperty('--mx', ((e.clientX - r.left) / r.width - 0.5).toFixed(3));
+          preview.style.setProperty('--my', ((e.clientY - r.top) / r.height - 0.5).toFixed(3));
+        });
+        preview.addEventListener('pointerleave', () => { preview.style.setProperty('--mx', 0); preview.style.setProperty('--my', 0); });
+      }
+      summary.append(preview);
+
+      const body = document.createElement('div');
+      body.className = 'album-body';
+      const close = document.createElement('button');
+      close.type = 'button';
+      close.className = 'album-close';
+      close.textContent = 'Close album ↑';
+      close.addEventListener('click', () => {
+        details.open = false;
+        summary.scrollIntoView({ block: 'start', behavior: reduced ? 'auto' : 'smooth' });
+        summary.focus({ preventScroll: true });
+      });
+      body.append(grid, close);
+      details.append(summary, body);
+      photos.append(details);
+    }
+    // Loose photos (no album) still work.
+    if ((collections.photos || []).length) {
+      const grid = document.createElement('div');
+      grid.className = 'album-grid';
+      for (const photo of collections.photos) addPhoto(grid, photo, '');
+      if (grid.childElementCount) photos.append(grid);
     }
     document.getElementById('photo-empty').hidden = photos.childElementCount > 0;
 
