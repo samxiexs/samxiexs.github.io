@@ -6,7 +6,7 @@
   const defaults = { theme: 'system', font: 'default', size: 100 };
   const validate = (value = {}) => ({
     theme: ['system', 'light', 'dark'].includes(value?.theme) ? value.theme : 'system',
-    font: ['default', 'mono', 'dyslexic'].includes(value?.font) ? value.font : 'default',
+    font: ['default', 'inter', 'mono', 'dyslexic'].includes(value?.font) ? value.font : 'default',
     size: [90, 95, 100, 105, 110].includes(value?.size) ? value.size : 100
   });
   let settings = { ...defaults };
@@ -45,7 +45,7 @@
     panel.className = 'appearance';
     panel.innerHTML = `<summary>Appearance</summary><div class="appearance-panel">
       <label for="site-theme">Theme</label><select id="site-theme"><option value="system">System</option><option value="light">Light</option><option value="dark">Dark</option></select>
-      <label for="site-font">Font</label><select id="site-font"><option value="default">Default</option><option value="mono">Mono</option><option value="dyslexic">OpenDyslexic</option></select>
+      <label for="site-font">Font</label><select id="site-font"><option value="default">Lato</option><option value="inter">Inter</option><option value="mono">Mono</option><option value="dyslexic">OpenDyslexic</option></select>
       <label for="site-size">Text size</label><select id="site-size"><option value="90">90%</option><option value="95">95%</option><option value="100">100%</option><option value="105">105%</option><option value="110">110%</option></select>
       <button type="button">Reset</button></div>`;
     (document.querySelector('.sidebar-foot') || document.querySelector('main')).append(panel);
