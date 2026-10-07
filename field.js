@@ -1,6 +1,7 @@
 /* field.js — flow-field streamlines drawn behind the hero (and page intros).
    Particles follow a slowly drifting simplex-noise vector field and leave thin ink trails,
-   so the canvas reads like a streamline plot. The cursor bends the field with a small vortex;
+   so the canvas reads like a streamline plot. The whole field drifts with Atlanta's current wind
+   (from weather.js). The cursor bends the field with a small vortex;
    a click "diffuses" the lines into noise, after which they settle back into streamlines.
    No dependencies. Respects prefers-reduced-motion (renders one static frame). */
 (() => {
@@ -56,9 +57,20 @@
       this.running = false;
       this.inView = true;
       this.color = inkColor(0.16);
+      this.wx = 0; this.wy = 0;   // drift from the live Atlanta wind (weather.js)
+      this.setWind(window.siteWind);
       this.resize();
       this.bind();
       if (reduced.matches) this.renderStatic(); else this.start();
+    }
+
+    // Wind direction is the bearing it blows toward (0° = north = up on screen); calm air adds nothing,
+    // 20 mph and above gives a steady sideways drift that still lets the noise field show through.
+    setWind(w) {
+      if (!w || !isFinite(w.mph) || !isFinite(w.toward)) return;
+      const strength = Math.min(w.mph, 20) / 20 * 0.9, rad = w.toward * Math.PI / 180;
+      this.wx = Math.sin(rad) * strength;
+      this.wy = -Math.cos(rad) * strength;
     }
 
     resize() {
@@ -101,7 +113,7 @@
       const scale = 0.0017, speed = 1.1 * k, R = 150, heat = this.heat;
       for (const p of this.particles) {
         const a = this.noise(p.x * scale + this.t, p.y * scale - this.t * 0.7) * Math.PI * 1.7;
-        let vx = Math.cos(a) * speed, vy = Math.sin(a) * speed;
+        let vx = Math.cos(a) * speed + this.wx * k, vy = Math.sin(a) * speed + this.wy * k;
         if (m.active) {
           const dx = p.x - m.x, dy = p.y - m.y, d = Math.hypot(dx, dy);
           if (d < R && d > 0.001) {
@@ -171,6 +183,7 @@
         if (this.inView) this.start(); else this.stop();
       }, { rootMargin: '80px' }).observe(host);
 
+      window.addEventListener('sitewind', (e) => this.setWind(e.detail));
       document.addEventListener('visibilitychange', () => { if (document.hidden) this.stop(); else this.start(); });
 
       // Old trails are the old ink colour on the new background, i.e. invisible; they fade out on their own.

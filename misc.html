@@ -7,7 +7,7 @@
   <meta name="description" content="Photography, music, and notes by Shen Xie.">
   <link rel="canonical" href="https://samxiexs.github.io/misc.html">
   <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#fcfdff" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#161b26" media="(prefers-color-scheme: dark)">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -43,11 +43,11 @@
     </nav>
     <div class="sidebar-foot">
       <p class="social"><a href="mailto:sxie322@gatech.edu">Email</a><a href="https://github.com/samxiexs">GitHub</a><a href="https://www.linkedin.com/in/shenxie">LinkedIn</a></p>
-      <p class="clock" data-clock hidden>Atlanta · <time></time></p>
     </div>
   </aside>
 
   <main id="main" class="content single-page">
+    <p class="conditions" aria-label="Right now in Atlanta"><span class="clock" data-clock hidden>Atlanta · <time></time></span><span class="wx" data-weather hidden></span></p>
     <div class="page-intro">
       <canvas class="field" data-field aria-hidden="true"></canvas>
       <h1>Misc</h1>
@@ -81,6 +81,7 @@
     </footer>
   </main>
 </div>
+<script src="weather.js" defer></script>
 <script src="field.js" defer></script>
 <script src="site.js" defer></script>
 </body>

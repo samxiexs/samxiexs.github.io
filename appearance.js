@@ -23,7 +23,7 @@
     root.style.fontSize = `${settings.size * (settings.font === 'dyslexic' ? 0.87 : 1)}%`;
     document.querySelectorAll('meta[name="theme-color"]').forEach((meta) => meta.remove());
     const meta = document.createElement('meta');
-    meta.name = 'theme-color'; meta.content = isDark() ? '#161b26' : '#ffffff';
+    meta.name = 'theme-color'; meta.content = isDark() ? '#161b26' : '#fcfdff';
     document.head.append(meta);
   }
   // Cross-fade colours when the rendered scheme actually changes (see .theme-fade in style.css).
