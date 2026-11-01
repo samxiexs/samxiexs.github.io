@@ -13,6 +13,22 @@
 window.personalCollections = {
   albums: [
     {
+      id: 'second-month-gt',
+      title: 'Second month at Georgia Tech',
+      dates: 'October 2026',
+      note: 'Six frames from October — a little basketball, a little autumn, and one spooky evening :)',
+      dir: 'pic/misc/second-mon-gt/',
+      preview: [2, 1, 4, 0, 5],
+      photos: [
+        { src: 'thumb/01-sunset-through-the-trees.jpg', full: 'full/01-sunset-through-the-trees.jpg', w: 720, h: 960, alt: 'Pink and orange sunset clouds framed by dark trees above a neighborhood street', caption: 'Oct 5 · sunset through the trees' },
+        { src: 'thumb/02-shadow-on-the-court.jpg', full: 'full/02-shadow-on-the-court.jpg', w: 540, h: 960, alt: 'The photographer’s shadow stretches across a blue outdoor basketball court beneath a clear sky', caption: 'Oct 17 · a shadow and a hoop' },
+        { src: 'thumb/03-campus-and-skyline.jpg', full: 'full/03-campus-and-skyline.jpg', w: 960, h: 540, alt: 'Atlanta towers rise beyond a campus sports field under a cloudless blue sky', caption: 'Oct 21 · campus and skyline' },
+        { src: 'thumb/04-court-under-the-trees.jpg', full: 'full/04-court-under-the-trees.jpg', w: 540, h: 960, alt: 'A basketball hoop on a blue court surrounded by leafy trees in afternoon sunlight', caption: 'Oct 22 · back on the court' },
+        { src: 'thumb/05-autumn-leaves.jpg', full: 'full/05-autumn-leaves.jpg', w: 540, h: 960, alt: 'Sunlight filters through a canopy of green, gold, and orange autumn leaves', caption: 'Oct 30 · autumn, finally' },
+        { src: 'thumb/06-halloween-after-dark.jpg', full: 'full/06-halloween-after-dark.jpg', w: 960, h: 540, alt: 'A tall Halloween figure with glowing red eyes and colorful skull lights outside a brick building at night', caption: 'October · Halloween after dark' }
+      ]
+    },
+    {
       id: 'first-month-gt',
       title: 'First month at Georgia Tech',
       dates: 'Aug 30 – Sep 25, 2026',
