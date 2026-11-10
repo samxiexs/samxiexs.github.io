@@ -1,0 +1,122 @@
+/* Windows 98 is a presentation layer; Modern retains the original stylesheet. */
+.desktop-toolbar { position: fixed; top: 12px; right: 20px; z-index: 45; }
+.desktop-title, .desktop-taskbar { display: none; }
+.mode-toggle { min-height: 36px; padding: 7px 14px; border: 1px solid var(--line); border-radius: 5px; background: var(--bg); color: var(--ink); font: 600 13px/1.3 var(--sans); cursor: pointer; box-shadow: 0 2px 8px #0001; }
+.mode-toggle:hover { background: var(--soft); }
+:root[data-mode="retro"] {
+  color-scheme: light; --bg: #fff; --ink: #202020; --muted: #555; --line: #c0c0c0; --soft: #efefef;
+  --accent: #000080; --rule: 1px solid #b5b5b5; --field-rgb: 32 32 32;
+  --raised: inset 1px 1px #fff, inset -1px -1px #404040, inset 2px 2px #dfdfdf, inset -2px -2px #808080;
+  --sunken: inset 1px 1px #808080, inset -1px -1px #fff, inset 2px 2px #404040, inset -2px -2px #dfdfdf;
+  scroll-padding-top: 88px;
+}
+:root[data-mode="retro"][data-font="default"] { --sans: Tahoma, Verdana, Arial, sans-serif; }
+[data-mode="retro"] body { background: #008080; font-size: .875rem; line-height: 1.7; padding: 76px 0 64px; }
+[data-mode="retro"] .desktop-toolbar { top: 0; left: 0; right: 0; min-height: 48px; padding: 6px 16px; display: flex; justify-content: space-between; align-items: center; gap: 12px; background: #c0c0c0; box-shadow: var(--raised); }
+[data-mode="retro"] .desktop-title { display: flex; align-items: center; gap: 12px; font: bold 14px Tahoma, sans-serif; }
+.computer-icon { width: 24px; height: 19px; background: #008080; border: 3px ridge #eee; box-shadow: 2px 2px #333; position: relative; }
+.computer-icon::after { content: ''; position: absolute; width: 16px; height: 3px; background: #808080; top: 19px; left: 1px; border-bottom: 2px solid #fff; }
+[data-mode="retro"] .mode-toggle { border: 0; border-radius: 0; background: #c0c0c0; color: #000; box-shadow: var(--raised); font-family: Tahoma, sans-serif; }
+[data-mode="retro"] .mode-toggle:active { box-shadow: var(--sunken); }
+[data-mode="retro"] .layout { width: min(1220px, calc(100% - 64px)); grid-template-columns: 218px minmax(0, 1fr); gap: 18px; }
+[data-mode="retro"] .sidebar { top: 76px; height: auto; max-height: calc(100dvh - 140px); padding: 4px; gap: 18px; background: #c0c0c0; box-shadow: var(--raised); overflow-y: auto; }
+[data-mode="retro"] .sidebar-top { padding: 0 12px 12px; }
+[data-mode="retro"] .brand { background: linear-gradient(90deg, #000080, #1084d0); margin: 0 -12px 14px; padding: 7px 9px; font-size: 14px; letter-spacing: 0; }
+[data-mode="retro"] .brand a { color: #fff; }
+[data-mode="retro"] .role { color: #333; font-size: 12px; }
+[data-mode="retro"] .sidebar-top::after { content: 'RESEARCHER / EXPLORER'; display: block; font: 10px/1.6 var(--mono); margin-top: 16px; color: #555; }
+[data-mode="retro"] .nav { margin: 0 9px; padding: 8px; background: #fff; box-shadow: var(--sunken); gap: 3px; }
+[data-mode="retro"] .nav a { padding: 6px 8px 6px 31px; color: #222; font-size: 13px; transition: none; }
+[data-mode="retro"] .nav a::before { display: block; width: 15px; height: 11px; left: 7px; top: 12px; background: #f5d675; border: 1px solid #927421; box-shadow: inset 1px 1px #fff3b4; }
+[data-mode="retro"] .nav a[aria-current], [data-mode="retro"] .nav a.is-active { background: #000080; color: #fff; }
+[data-mode="retro"] .nav a:hover { outline: 1px dotted #808080; outline-offset: -2px; }
+[data-mode="retro"] .nav-gap { height: 8px; }
+[data-mode="retro"] .subnav a { margin-left: 10px; font-size: 12px; }
+[data-mode="retro"] .sidebar-foot { margin: 0; padding: 0 12px 14px; }
+[data-mode="retro"] .social a { color: #000080; }
+[data-mode="retro"] .content { max-width: none; background: #fff; border: 5px solid #c0c0c0; box-shadow: var(--raised), 3px 3px 0 #004b4b; padding: 0 24px; }
+[data-mode="retro"] .content::before { content: 'Welcome to my homepage'; display: block; background: linear-gradient(90deg, #000080, #1084d0); color: #fff; font: bold 13px/1.5 Tahoma, sans-serif; margin: 0 -24px; padding: 7px 12px; }
+[data-mode="retro"] .conditions { margin: 0 -24px; padding: 8px 14px; background: #efefef; border-bottom: 1px solid #aaa; font-size: 11px; }
+[data-mode="retro"] .hero { padding: 30px 0; gap: 24px; min-height: 0; grid-template-columns: minmax(0, 1fr) 158px; }
+[data-mode="retro"] .hero .lead { font-size: 1rem; }
+[data-mode="retro"] .field, [data-mode="retro"] .field-hint { display: none; }
+[data-mode="retro"] .portrait { width: 158px; transform: none; padding: 5px; background: #c0c0c0; box-shadow: var(--raised); border-radius: 0; }
+[data-mode="retro"] .portrait img { border-radius: 0; }
+[data-mode="retro"] .portrait::after { content: 'Shen (Sam) Xie · Atlanta'; display: block; font: 10px/1.4 Tahoma, sans-serif; text-align: center; margin: 8px 0 4px; }
+[data-mode="retro"] .section { padding: 0 0 28px; border: 0; }
+[data-mode="retro"] .section-head { padding: 8px 12px; background: #dfdfdf; border: 1px solid #aaa; box-shadow: inset 1px 1px #fff; margin-bottom: 18px; gap: 10px; }
+[data-mode="retro"] .section-head h2 { background: none; color: #000; font: bold 14px/1.4 Tahoma, sans-serif; margin: 0; padding: 0; }
+[data-mode="retro"] .section-head > a { font-size: 11px; }
+[data-mode="retro"] .agenda { grid-template-columns: 86px minmax(0, 1fr); gap: 16px; }
+[data-mode="retro"] .agenda + .agenda { margin-top: 22px; }
+[data-mode="retro"] .agenda-no { padding: 6px; background: #f0f0f0; border: 1px solid #ccc; align-self: start; text-align: center; }
+[data-mode="retro"] .agenda h3 { font-size: .94rem; }
+[data-mode="retro"] .paper > summary h4 { font-size: .875rem; }
+[data-mode="retro"] .paper > summary { padding-block: 10px; }
+[data-mode="retro"] .project-grid { gap: 16px; }
+[data-mode="retro"] .project { padding: 12px; border: 1px solid #aaa; background: #f6f6f6; }
+[data-mode="retro"] .project p { font-size: .8rem; }
+[data-mode="retro"] .cover, [data-mode="retro"] .entry .logo { border-radius: 0; }
+[data-mode="retro"] .two-column { gap: 22px; }
+[data-mode="retro"] .site-footer { margin: 0 -24px; padding: 12px 16px; border-top: 1px solid #aaa; background: #efefef; }
+[data-mode="retro"] .page-intro { padding-block: 28px; }
+[data-mode="retro"] .appearance summary { color: #222; }
+[data-mode="retro"] .appearance-panel { position: static; width: 100%; padding: 10px; margin-top: 8px; gap: 8px; grid-template-columns: 1fr; border-radius: 0; background: #c0c0c0; box-shadow: var(--sunken); }
+[data-mode="retro"] .appearance select, [data-mode="retro"] .appearance button { border-radius: 0; }
+[data-mode="retro"] .desktop-taskbar { position: fixed; bottom: 0; left: 0; right: 0; z-index: 40; display: flex; align-items: center; gap: 8px; background: #c0c0c0; padding: 5px 8px; box-shadow: inset 0 2px #fff; color: #222; font: 12px/1.5 Tahoma, sans-serif; }
+[data-mode="retro"] .desktop-home { padding: 5px 13px; box-shadow: var(--raised); color: #000; font-weight: bold; }
+[data-mode="retro"] .desktop-task { padding: 5px 14px; box-shadow: var(--sunken); background: #ddd; }
+[data-mode="retro"] .desktop-status { margin-left: auto; color: #444; }
+[data-mode="retro"] .desktop-edition { padding: 5px 12px; box-shadow: var(--sunken); font-size: 10px; letter-spacing: 1px; }
+@media (max-width: 880px) {
+  [data-mode="modern"] .desktop-toolbar { top: auto; bottom: 16px; right: 16px; }
+  [data-mode="retro"] .layout { width: calc(100% - 32px); display: block; }
+  [data-mode="retro"] .sidebar { position: relative; top: 0; margin: 0 0 18px; max-height: none; overflow: visible; backdrop-filter: none; }
+  [data-mode="retro"] .sidebar-top { padding-bottom: 0; }
+  [data-mode="retro"] .brand { margin-bottom: 0; }
+  [data-mode="retro"] .sidebar-top::after { display: none; }
+  [data-mode="retro"] .nav { flex-wrap: wrap; overflow: visible; margin-bottom: 8px; }
+  [data-mode="retro"] .nav a { border: 0; }
+  [data-mode="retro"] .sidebar-foot { display: block; padding: 0; }
+  [data-mode="retro"] .appearance { top: 7px; right: 12px; }
+  [data-mode="retro"] .appearance summary { color: #fff; }
+  [data-mode="retro"] .appearance-panel { position: absolute; top: 100%; width: 230px; }
+  [data-mode="retro"] .desktop-status { display: none; }
+  [data-mode="retro"] .desktop-edition { margin-left: auto; }
+}
+@media (max-width: 640px) {
+  [data-mode="retro"] body { padding-top: 64px; }
+  [data-mode="retro"] .desktop-toolbar { padding-inline: 10px; }
+  [data-mode="retro"] .desktop-subtitle { display: none; }
+  [data-mode="retro"] .desktop-title { font-size: 12px; gap: 8px; }
+  [data-mode="retro"] .mode-toggle { font-size: 12px; padding-inline: 10px; }
+  [data-mode="retro"] .layout { width: calc(100% - 20px); }
+  [data-mode="retro"] .content { padding-inline: 16px; }
+  [data-mode="retro"] .content::before, [data-mode="retro"] .conditions, [data-mode="retro"] .site-footer { margin-inline: -16px; }
+  [data-mode="retro"] .hero { display: flex; flex-direction: column; gap: 16px; padding-block: 24px; }
+  [data-mode="retro"] .portrait { order: -1; width: 120px; margin: 0; align-self: flex-start; }
+  [data-mode="retro"] .portrait img { aspect-ratio: 1; }
+  [data-mode="retro"] .portrait::after { font-size: 9px; }
+  [data-mode="retro"] .agenda { grid-template-columns: 1fr; gap: 8px; }
+  [data-mode="retro"] .agenda-no { justify-self: start; margin: 0; }
+  [data-mode="retro"] .project-grid, [data-mode="retro"] .two-column { grid-template-columns: 1fr; }
+  [data-mode="retro"] .desktop-task { font-size: 10px; padding-inline: 8px; }
+  [data-mode="retro"] .desktop-edition { display: none; }
+}
+@media print {
+  .desktop-toolbar, .desktop-taskbar { display: none !important; }
+  [data-mode="retro"] body { background: #fff; padding: 0; }
+  [data-mode="retro"] .layout { width: 100%; }
+  [data-mode="retro"] .sidebar { max-height: none; }
+  [data-mode="retro"] .content { box-shadow: none; }
+}
+
+/* Alternate, explorable desktop edition. */
+.desktop-toolbar { display:flex; align-items:center; gap:8px; }
+.desktop-mode-link { font:12px/1.4 var(--sans); background:var(--bg); color:var(--accent); border:1px solid var(--line); border-radius:4px; padding:8px 10px; }
+[data-mode="retro"] .desktop-title { margin-right:auto; }
+[data-mode="retro"] .desktop-mode-link { background:#c0c0c0; color:#000080; border:0; border-radius:0; box-shadow:var(--raised); }
+@media(max-width:640px) {
+  [data-mode="retro"] .desktop-title { display:none; }
+  [data-mode="retro"] .desktop-mode-link { margin-right:auto; font-size:11px; }
+}

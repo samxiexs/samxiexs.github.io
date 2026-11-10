@@ -3,3 +3,5 @@ __pycache__/
 .preview/
 .claude/
 pic/misc/*/_originals/
+
+.playwright-mcp/
