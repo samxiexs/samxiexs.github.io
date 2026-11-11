@@ -180,3 +180,40 @@
 @keyframes boot-slide { from { transform:translateX(-110%); } to { transform:translateX(330%); } }
 @media(max-width:640px) { .os-topbar { left:5px; } .os-topbar nav { width:100%; justify-content:flex-end; } .os-topbar button { margin-right:auto; padding:6px; font-size:10px; } .boot-inner h1 { font-size:22px; } }
 @media(prefers-reduced-motion:reduce) { .boot-progress span { animation:none; } }
+/* Resize targets follow all four edges and corners. */
+.os-window { container-type:inline-size; }
+.resize-handle { position:absolute; z-index:5; touch-action:none; }
+.resize-n,.resize-s { left:7px; right:7px; height:6px; cursor:ns-resize; }
+.resize-n { top:-2px; } .resize-s { bottom:-2px; }
+.resize-e,.resize-w { top:7px; bottom:7px; width:6px; cursor:ew-resize; }
+.resize-e { right:-2px; } .resize-w { left:-2px; }
+.resize-ne,.resize-nw,.resize-se,.resize-sw { width:10px; height:10px; }
+.resize-ne,.resize-sw { cursor:nesw-resize; } .resize-nw,.resize-se { cursor:nwse-resize; }
+.resize-ne { right:-2px; top:-2px; } .resize-nw { left:-2px; top:-2px; }
+.resize-se { right:-2px; bottom:-2px; } .resize-sw { left:-2px; bottom:-2px; }
+.maximized .resize-handle { display:none; }
+@container(max-width:480px) {
+  .welcome-layout { grid-template-columns:1fr; }
+  .welcome-side { display:none; }
+  .os-window-body .hero { display:flex; flex-direction:column; }
+  .os-window-body .agenda { grid-template-columns:1fr; }
+}
+@media(max-width:640px) {
+  .resize-handle { display:none; }
+  .os-window { width:calc(100% - 10px) !important; height:calc(100% - 43px) !important; }
+  .os-topbar button,.os-topbar a,.os-topbar a:last-child { font-size:10px; padding:6px 4px; }
+  .os-topbar nav { gap:3px; }
+}
+/* Night palette preserves the classic beveled chrome and bitmap type. */
+:root[data-night="true"] { color-scheme:dark; --bg:#202630; --ink:#edf0f5; --muted:#b6becb; --accent:#a6c5ff; --line:#505967; --soft:#303845; --raised:inset 1px 1px #788391,inset -1px -1px #11151c,inset 2px 2px #56616f,inset -2px -2px #242b35; --sunken:inset 1px 1px #10151d,inset -1px -1px #66717f,inset 2px 2px #1a2029,inset -2px -2px #414b59; }
+[data-night="true"] .os-desktop { background-image:linear-gradient(#06112dbd,#071727c9),url('assets/retro/sky-pexels.jpg'); color:var(--ink); }
+[data-night="true"] :is(.os-window,.os-taskbar,#start-menu,.os-topbar button,.os-topbar a,.os-topbar a:last-child,.window-controls button,#start-button,.task-button,#skip-boot) { background:#394350; color:var(--ink); }
+[data-night="true"] :is(.os-window-body,.os-address span:last-child,.welcome-shortcuts button) { background:#202630; color:var(--ink); }
+[data-night="true"] :is(.welcome-content h1,.start-items button,.start-items a,.start-items p,.desktop-photo-grid span,.welcome-content .desktop-tip,.welcome-shortcuts small) { color:var(--ink); }
+[data-night="true"] .welcome-shortcuts b { color:var(--accent); }
+[data-night="true"] .welcome-shortcuts button:hover { background:#303e52; }
+[data-night="true"] .os-titlebar { background:linear-gradient(90deg,#4a5260,#626e7e); }
+[data-night="true"] .os-window.active .os-titlebar { background:linear-gradient(90deg,#14286a,#285b88); }
+[data-night="true"] .task-button[aria-pressed="true"] { background:#273446; }
+[data-night="true"] .desktop-icon > span:last-child { background:#162d40; }
+[data-night="true"] #boot-screen { background-image:linear-gradient(#06112dbd,#071727c9),url('assets/retro/sky-pexels.jpg'); }

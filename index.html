@@ -9,12 +9,13 @@
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="desktop.css">
+  <script src="desktop-theme.js"></script>
   <script src="collections.js" defer></script>
   <script src="desktop.js" defer></script>
 </head>
 <body class="os-desktop">
   <a class="skip" href="#desktop-icons">Skip to desktop apps</a>
-  <header class="os-topbar"><nav aria-label="Website style"><button type="button" data-open="credits">About this desktop</button><a href="website.html" data-exit="retro">98 Website</a><a href="website.html" data-exit="modern">Switch to Modern ↗</a></nav></header>
+  <header class="os-topbar"><nav aria-label="Website style"><button type="button" id="night-toggle" aria-pressed="false">Night mode</button><button type="button" data-open="credits">About this desktop</button><a href="website.html" data-exit="retro">98 Website</a><a href="website.html" data-exit="modern">Switch to Modern ↗</a></nav></header>
   <main id="workspace" aria-label="Desktop workspace">
     <nav id="desktop-icons" aria-label="Desktop apps" tabindex="-1"></nav>
     <div id="windows"></div>

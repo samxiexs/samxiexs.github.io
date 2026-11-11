@@ -114,6 +114,31 @@
       const stop = () => { titlebar.removeEventListener('pointermove', move); titlebar.removeEventListener('pointerup', stop); titlebar.removeEventListener('pointercancel', stop); };
       titlebar.addEventListener('pointermove', move); titlebar.addEventListener('pointerup', stop); titlebar.addEventListener('pointercancel', stop);
     });
+    for (const direction of ['n', 's', 'e', 'w', 'ne', 'nw', 'se', 'sw']) {
+      const handle = document.createElement('div');
+      handle.className = `resize-handle resize-${direction}`;
+      handle.setAttribute('aria-hidden', 'true');
+      el.append(handle);
+      handle.addEventListener('pointerdown', event => {
+        if (event.button !== 0 || el.classList.contains('maximized') || matchMedia('(max-width:640px)').matches) return;
+        event.preventDefault(); event.stopPropagation(); focusWindow(item, false);
+        const x = event.clientX, y = event.clientY;
+        const left = el.offsetLeft, top = el.offsetTop, width = el.offsetWidth, height = el.offsetHeight;
+        const right = left + width, bottom = top + height;
+        handle.setPointerCapture(event.pointerId);
+        const move = e => {
+          const dx = e.clientX - x, dy = e.clientY - y;
+          let l = left, t = top, r = right, b = bottom;
+          if (direction.includes('e')) r = Math.max(left + 320, Math.min(workspace.clientWidth, right + dx));
+          if (direction.includes('s')) b = Math.max(top + 240, Math.min(workspace.clientHeight, bottom + dy));
+          if (direction.includes('w')) l = Math.max(0, Math.min(right - 320, left + dx));
+          if (direction.includes('n')) t = Math.max(0, Math.min(bottom - 240, top + dy));
+          Object.assign(el.style, { left: `${l}px`, top: `${t}px`, width: `${r-l}px`, height: `${b-t}px` });
+        };
+        const stop = () => { handle.removeEventListener('pointermove', move); handle.removeEventListener('pointerup', stop); handle.removeEventListener('pointercancel', stop); };
+        handle.addEventListener('pointermove', move); handle.addEventListener('pointerup', stop); handle.addEventListener('pointercancel', stop);
+      });
+    }
     fill(item); clamp(item); focusWindow(item); announce(`${app.title} opened.`);
   }
   for (const [id, app] of Object.entries(apps)) {
