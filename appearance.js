@@ -49,6 +49,7 @@
     const desktopLink = document.createElement('a');
     desktopLink.className = 'desktop-mode-link';
     desktopLink.href = new URL('index.html', document.querySelector('script[src$="appearance.js"]').src).href;
+    if (document.body.dataset.desktopApp) desktopLink.hash = document.body.dataset.desktopApp;
     desktopLink.textContent = 'Explore Desktop ↗';
     toolbar.insertBefore(desktopLink, toolbar.querySelector('button'));
     document.body.prepend(toolbar);

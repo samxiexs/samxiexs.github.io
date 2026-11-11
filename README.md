@@ -25,3 +25,14 @@ python3 -m http.server 8765 --bind 127.0.0.1
 Open http://127.0.0.1:8765/ and keep the server running while browsing.
 
 The classic 98 and Modern layouts share `website.html`. The desktop provides one-click links to either mode; `desktop.html` redirects to the default homepage for existing preview links.
+
+## Computer Science Map
+
+The note lives at `notes/computer-science.html` (Misc → Notes). The desktop opens
+it as a native window via Misc & Notes or `/#cs-map`. Both presentations share
+`assets/cs-map/data.js`, `map.js`, and `map.css`; no runtime content fetch is needed.
+
+Edit the taxonomy in `data.js`. Each topic has a stable ID, kind, short explanation,
+examples, children, and related topic IDs. The eight broad areas are an editorial
+grouping informed by CS2023, not an exhaustive or mutually exclusive taxonomy.
+Modern/retro use the existing appearance settings; the desktop inherits its night mode.

@@ -8,6 +8,8 @@
     projects: { title: 'Projects', icon: 'folder', selector: '#projects' },
     experience: { title: 'Education & Experience', icon: 'document', selector: '#experience' },
     photos: { title: 'My Pictures', icon: 'picture' },
+    misc: { title: 'Misc & Notes', label: 'Misc & Notes', icon: 'folder' },
+    'cs-map': { title: 'Computer Science Map', icon: 'document', hideDesktopIcon: true },
     contact: { title: 'Contact & Links', icon: 'mail' },
     credits: { title: 'About this Desktop', icon: 'document' }
   };
@@ -23,8 +25,13 @@
   const icon = (kind, size = 32) => `<img class="pixel-icon" src="assets/retro/icons/${iconFiles[kind]}-${size}.png" width="${size}" height="${size}" alt="" draggable="false">`;
   const announce = (message) => { document.querySelector('#os-announcement').textContent = message; };
   function setMenu(open) { menu.hidden = !open; start.setAttribute('aria-expanded', String(open)); }
+  function updateExitLinks(item) {
+    const href = item.id === 'cs-map' ? `notes/computer-science.html${item.topic && item.topic !== 'cs' ? '#topic=' + item.topic : ''}` : item.id === 'misc' ? 'misc.html#notes' : 'website.html';
+    document.querySelectorAll('[data-exit]').forEach(link => { link.href = href; });
+  }
   function focusWindow(item, focus = true) {
     item.el.hidden = false;
+    updateExitLinks(item);
     item.el.style.zIndex = ++highest;
     state.forEach((w) => { w.el.classList.toggle('active', w === item); w.task.setAttribute('aria-pressed', String(w === item)); });
     if (focus) item.el.focus({ preventScroll: true });
@@ -70,6 +77,19 @@
       body.innerHTML = `<h1>Let's stay in touch.</h1><p>Find me around the internet, or send a hello.</p><div class="contact-links"><a href="mailto:sxie322@gatech.edu">Email · sxie322@gatech.edu ↗</a><a href="https://github.com/samxiexs">GitHub · samxiexs ↗</a><a href="https://www.linkedin.com/in/shenxie">LinkedIn · Shen Xie ↗</a><a href="cv-refernce/ShenXie-CV-202609.pdf">Open my CV (PDF) ↗</a><a href="misc.html">Photography, music & notes on the website ↗</a></div>`;
     } else if (item.id === 'credits') {
       body.innerHTML = `<h1>About this desktop</h1><p>A personal website inspired by Windows 98 and <a href="https://98.js.org/">98.js</a>. Desktop behavior and layout are implemented for this site.</p><h2>Wallpaper</h2><p>“Blue Sky with White Clouds” by <a href="https://www.pexels.com/photo/blue-sky-with-white-clouds-23234956/">Thilina Alagiyawanna / Pexels</a>. Used under the <a href="https://www.pexels.com/license/">Pexels License</a>, which allows free personal and commercial use. The photograph is hosted locally.</p><h2>Type & icons</h2><p>Pixelated MS Sans Serif by lou, distributed by <a href="https://jdan.github.io/98.css/">98.css</a>; <a href="assets/retro/fonts/font-LICENSE.txt">font license</a>. Classic icons sourced from 98.js; original visual assets belong to their respective owners. Attribution is not a separate license grant.</p><p><a href="assets/retro/SOURCES.md">Full asset sources and credits</a></p>`;
+    } else if (item.id === 'misc') {
+      body.innerHTML = `<h1>Misc</h1><p>Photos, music, and notes from the other side of the desk.</p><div class="text-links"><button type="button" data-open="photos">My Pictures</button><a href="misc.html#music">Music ↗</a></div><h2 style="margin:24px 0 14px">Notes</h2><div class="desktop-notes-list"></div>`;
+      const list = body.querySelector('.desktop-notes-list');
+      for (const note of window.personalCollections?.notes || []) {
+        const card = document.createElement('article'); card.className = 'desktop-note-card';
+        const date = document.createElement('time'); date.dateTime = note.date; date.textContent = note.date;
+        const link = document.createElement(note.desktopApp ? 'button' : note.href ? 'a' : 'h3'); link.textContent = note.title;
+        if (note.desktopApp) { link.type = 'button'; link.dataset.open = note.desktopApp; } else if (note.href) link.href = note.href;
+        const summary = document.createElement('p'); summary.textContent = note.summary;
+        card.append(date, link, summary); list.append(card);
+      }
+    } else if (item.id === 'cs-map') {
+      item.map = window.CSMap.mount(body, { onSelect: id => { item.topic = id; updateExitLinks(item); } });
     } else if (item.id === 'photos') {
       body.innerHTML = '<h1>My Pictures</h1><p>Places and light, away from the desk.</p>';
       for (const album of window.personalCollections?.albums || []) {
@@ -93,7 +113,7 @@
     if (state.has(id)) { focusWindow(state.get(id)); return; }
     const app = apps[id];
     const el = document.createElement('section'); el.className = `os-window app-${id}`; el.tabIndex = -1; el.setAttribute('role', 'region'); el.setAttribute('aria-label', `${app.title} window`);
-    el.innerHTML = `<div class="os-titlebar"><span class="window-title">${icon(app.icon, 16)}<b>${app.title}</b></span><div class="window-controls"><button type="button" data-control="minimize" aria-label="Minimize ${app.title}">_</button><button type="button" data-control="maximize" aria-label="Maximize ${app.title}">□</button><button type="button" data-control="close" aria-label="Close ${app.title}">×</button></div></div><nav class="os-filebar" aria-label="Window shortcuts"><button data-open="welcome">Home</button><button data-open="research">Research</button><button data-open="photos">Pictures</button><button data-open="contact">Contact</button></nav><div class="os-address"><span>Address</span><span>My Computer / ${app.title}</span></div><div class="os-window-body"></div><div class="os-window-status"><span>${id === 'welcome' ? 'Welcome. Take a look around :)' : 'Shen Xie · Personal files'}</span><span>⌟</span></div>`;
+    el.innerHTML = `<div class="os-titlebar"><span class="window-title">${icon(app.icon, 16)}<b>${app.title}</b></span><div class="window-controls"><button type="button" data-control="minimize" aria-label="Minimize ${app.title}">_</button><button type="button" data-control="maximize" aria-label="Maximize ${app.title}">□</button><button type="button" data-control="close" aria-label="Close ${app.title}">×</button></div></div><nav class="os-filebar" aria-label="Window shortcuts"><button data-open="welcome">Home</button><button data-open="research">Research</button><button data-open="photos">Pictures</button><button data-open="misc">Misc / Notes</button><button data-open="contact">Contact</button></nav><div class="os-address"><span>Address</span><span>My Computer / ${app.title}</span></div><div class="os-window-body"></div><div class="os-window-status"><span>${id === 'welcome' ? 'Welcome. Take a look around :)' : 'Shen Xie · Personal files'}</span><span>⌟</span></div>`;
     el.style.left = `${Math.min(150 + state.size * 30, Math.max(0, workspace.clientWidth - 740))}px`;
     el.style.top = `${24 + state.size * 24}px`;
     const task = document.createElement('button'); task.type = 'button'; task.className = 'task-button'; task.innerHTML = `${icon(app.icon, 16)}<span>${app.title}</span>`; task.setAttribute('aria-label', `Show or minimize ${app.title}`);
@@ -103,7 +123,7 @@
     el.addEventListener('focusin', () => { if (!el.classList.contains('active')) focusWindow(item, false); });
     el.querySelector('[data-control="minimize"]').onclick = () => minimize(item);
     el.querySelector('[data-control="maximize"]').onclick = () => maximize(item);
-    el.querySelector('[data-control="close"]').onclick = () => { minimize(item); state.delete(id); el.remove(); task.remove(); if (![...state.values()].some(w => !w.el.hidden)) icons.querySelector(`[data-open="${id}"]`).focus(); announce(`${app.title} closed.`); };
+    el.querySelector('[data-control="close"]').onclick = () => { minimize(item); state.delete(id); item.map?.destroy(); el.remove(); task.remove(); if (![...state.values()].some(w => !w.el.hidden)) (icons.querySelector(`[data-open="${id}"]`) || icons.querySelector('[data-open="misc"]')).focus(); announce(`${app.title} closed.`); };
     const titlebar = el.querySelector('.os-titlebar');
     titlebar.addEventListener('dblclick', event => { if (!event.target.closest('button')) maximize(item); });
     titlebar.addEventListener('pointerdown', event => {
@@ -142,7 +162,7 @@
     fill(item); clamp(item); focusWindow(item); announce(`${app.title} opened.`);
   }
   for (const [id, app] of Object.entries(apps)) {
-    const button = document.createElement('button'); button.type = 'button'; button.dataset.open = id; button.className = 'desktop-icon'; button.innerHTML = `${icon(app.icon)}<span>${app.label || app.title}</span>`; icons.append(button);
+    const button = document.createElement('button'); button.type = 'button'; button.dataset.open = id; button.className = 'desktop-icon'; button.innerHTML = `${icon(app.icon)}<span>${app.label || app.title}</span>`; if (!app.hideDesktopIcon) icons.append(button);
     const entry = button.cloneNode(true); entry.className = 'start-app'; document.querySelector('#start-apps').append(entry);
   }
   document.addEventListener('click', event => {
@@ -176,7 +196,7 @@
   document.querySelector('#skip-boot').onclick = finishBoot;
   boot.addEventListener('cancel', event => { event.preventDefault(); finishBoot(); });
   document.querySelector('#restart-desktop').onclick = () => {
-    state.forEach(item => { item.el.remove(); item.task.remove(); });
+    state.forEach(item => { item.map?.destroy(); item.el.remove(); item.task.remove(); });
     state.clear();
     openApp('welcome');
     bootDesktop();

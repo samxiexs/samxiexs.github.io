@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Computer Science Map · Shen Xie</title>
+  <meta name="description" content="An interactive map of computer science fields, methods, and architectures. Explore systems, computer vision, NLP, Transformers, and their connections.">
+  <link rel="canonical" href="https://samxiexs.github.io/notes/computer-science.html">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#fcfdff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#161b26" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../retro.css">
+  <script src="../appearance.js"></script>
+  <link rel="stylesheet" href="../assets/cs-map/map.css">
+  <script src="../assets/cs-map/data.js" defer></script>
+  <script src="../assets/cs-map/map.js" defer></script>
+</head>
+<body class="cs-page" data-desktop-app="cs-map">
+<a class="skip" href="#main">Skip to content</a>
+<div class="layout">
+  <aside class="sidebar" id="top">
+    <div class="sidebar-top">
+      <p class="brand"><a href="../website.html">Shen Xie</a></p>
+      <p class="role">MS student, Computational Science &amp; Engineering, Georgia Tech</p>
+    </div>
+    <nav class="nav" aria-label="Main navigation">
+      <a href="../website.html">About</a>
+      <a href="../website.html#news">News</a>
+      <a href="../website.html#research">Research</a>
+      <a href="../website.html#projects">Projects</a>
+      <a href="../website.html#experience">Experience</a>
+      <span class="nav-gap" aria-hidden="true"></span>
+      <a href="../misc.html" aria-current="page">Misc</a>
+      <a href="../cv-refernce/ShenXie-CV-202609.pdf">CV <span class="arrow" aria-hidden="true">↗</span></a>
+    </nav>
+    <div class="sidebar-foot">
+      <p class="social"><a href="mailto:sxie322@gatech.edu">Email</a><a href="https://github.com/samxiexs">GitHub</a><a href="https://www.linkedin.com/in/shenxie">LinkedIn</a></p>
+    </div>
+  </aside>
+
+  <main id="main" class="content single-page">
+    <p class="conditions" aria-label="Right now in Atlanta"><span class="clock" data-clock hidden>Atlanta · <time></time></span><span class="wx" data-weather hidden></span></p>
+    <div class="page-intro">
+      <p class="mono-label"><a href="../misc.html#notes">← Misc / Notes</a> · <time datetime="2026-11-11">2026-11-11</time></p>
+    </div>
+    <div data-cs-map></div>
+    <noscript><article class="prose"><h1>Computer Science Map</h1><p>Eight starting points: Theory & Foundations; Computer Systems; Software & Languages; Data & Information; Artificial Intelligence; Graphics & Visualization; People & Computing; Security & Privacy.</p><p>Within AI, computer vision and NLP are application fields. Machine learning includes deep learning; Transformer is a neural architecture used across fields. Enable JavaScript to explore the interactive branches.</p><p>See the <a href="https://csed.acm.org/knowledge-areas/">CS2023 knowledge areas</a> for broader coverage.</p></article></noscript>
+    <footer class="site-footer">
+      <div class="footer-inner"><span>© 2026 Shen Xie · Atlanta, GA</span><span><a href="../website.html">Home</a> · <a href="#top">Top ↑</a></span></div>
+    </footer>
+  </main>
+</div>
+<script src="../weather.js" defer></script>
+<script src="../site.js" defer></script>
+</body>
+</html>

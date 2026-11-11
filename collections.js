@@ -47,5 +47,13 @@ window.personalCollections = {
     }
   ],
   music: [],
-  notes: []
+  notes: [
+    {
+      title: 'Computer Science Map',
+      date: '2026-11-11',
+      summary: 'An interactive map of computer science: systems, AI, language, vision, and the connections in between.',
+      href: 'notes/computer-science.html',
+      desktopApp: 'cs-map'
+    }
+  ]
 };
